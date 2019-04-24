@@ -20,8 +20,8 @@ class ClassSpider(scrapy.Spider):
                 for line in headers:
                     if not "OGN" in line and len(line) > 3:
                         file.write("h%s - "%(i+1)+line+"\n") 
-            for line in response.css("p::text").extract(): 
-                if "\n" not in line and len(line) > 20: 
+            for line in response.css("p ::text").extract(): 
+                if "\n" not in line and len(line) > 2: 
                     file.write("p - "+line+"\n")
         resp = response.css("li > a::attr(href)").extract()
         for line in resp:
@@ -54,6 +54,6 @@ class ClassSpider(scrapy.Spider):
                 for line in headers:
                     if not "OGN" in line and len(line) > 3:
                         file.write("h%s - "%(i+1)+line+"\n") 
-            for line in response.css("p::text").extract(): 
-                if "\n" not in line and len(line) > 20: 
+            for line in response.css("p ::text").extract(): 
+                if "\n" not in line and len(line) > 2: 
                     file.write("p - "+line+"\n")
