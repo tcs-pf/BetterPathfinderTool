@@ -1,4 +1,4 @@
-import scrapy
+import scrapy, os
 
 class ClassSpider(scrapy.Spider):
     name = "ClassSpider"
@@ -12,8 +12,9 @@ class ClassSpider(scrapy.Spider):
         pagetitle = pageparts[-1]
         if(len(pagetitle) < 3):
             pagetitle = pageparts[-2]
-        filename = "classes-" + pagetitle
-        with open("export-%s.txt"%filename, "w") as file:
+        filename = "export-classes-" + pagetitle
+        completeName = os.path.join("./Exports/", filename)     
+        with open("%s.txt"%completeName, "w") as file:
             file.write(response.url + "\n")
             for i in range(4):
                 headers = response.css("h%s::text"%(i+1)).extract()
@@ -46,8 +47,9 @@ class ClassSpider(scrapy.Spider):
         pagetitle = pageparts[-1]
         if(len(pagetitle) < 3):
             pagetitle = pageparts[-2]
-        filename = "classes-" + pagetitle
-        with open("export-%s.txt"%filename, "w") as file:
+        filename = "export-classes-" + pagetitle
+        completeName = os.path.join("./Exports/", filename)     
+        with open("%s.txt"%completeName, "w") as file:
             file.write(response.url + "\n")
             for i in range(4):
                 headers = response.css("h%s::text"%(i+1)).extract()
